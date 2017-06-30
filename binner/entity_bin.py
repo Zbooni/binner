@@ -147,6 +147,19 @@ class Bin(EntityObject,EntityArtifact):
 
     return occupied
 
+  """
+  occupied for slot based
+  spaces 
+  """
+  def occupied_space(self, space, item):
+     return self.occupied(    
+	    space.x,
+	    space.y,
+	    space.z,
+	    space.x_with_item(item),
+	    space.y_with_item(item),
+	    space.z_with_item(item))
+
 
   """
   find the level with the least 

@@ -1,7 +1,8 @@
 
 from .algo import Algo 
 from .entity_slot import Slot
-from . import log
+from .entity_space import Space
+from . import log, show_adding_box_log
 from .exception import DistributionException
 
 import time
@@ -12,97 +13,76 @@ class AlgoMulti(Algo):
         algorithm
 
 	
-  @param itemcollection: set of items
+  @param item_collection: set of items
   @returns bins with items
   """ 
   def run(self):
     log.debug("Entering Algorithm MULTI")
-    itemcollection = self.items
-    bincollection = self.bins
-    if not itemcollection.size() >= bincollection.size():
+    item_collection = self.items
+    bin_collection = self.bins
+    if not item_collection.size() >= bin_collection.size():
 	 raise DistributionException("Bins should be less than items")
 
-    curbin = self.get_next_bin()
-    bincollection.it = 1
-    first = True
-    while curbin != None:
-      if not first:
-        curbin = self.get_next_bin()
-      first = False
+    def continue_fn(bin, space, item):
+	  if bin.occupied_space(space, item):
+	     return False
 
-      if curbin is None:
-        break
+          m_y = bin.get_min_y_pos(cury)
 
-      log.info("Packing Bin #{0}".format(curbin.id))
-      curbin.s_time = time.time() 
-      itemcollection.reset()
-      while True:
-        last = False
-  	item = itemcollection.nextlargest()
-	if not item:
-	    break
-
-        """ using heuristics, rotate and see if we occupy less room """
-        #item.rotate()
-	if not curbin.can_fit( item ):
-	   continue
-
-        curx = 0
-        cury = 0
-        curd = 0
-   
-        """ if item.w > curbin.w: """
-        """ self.binner.add_lost(item) """
-        while curbin.occupied(curx + 1, cury + 1, curd + 1, curx + item.w + 1, cury + item.h + 1, item.d + curd + 1):
-          b_d = curbin.get_min_level_size('z') 
-          b_x = curbin.get_min_level_size('x') 
-          b_y = curbin.get_min_level_size('y')
-          m_y = curbin.get_min_y_pos(cury)
-          #m_y = curbin.slots[0]
-
-          if curx + item.w > curbin.w:
+          if space.x + (item.w > bin.w):
             """ try z now """
-            curd += item.d 
-            curx = 0
+            space.z += item.d 
+            space.x = 0
           else: 
-            curx += 1
-
+            space.x += 1
 
           """ if curd fails and so does  curx """
           """ go up in height make sure y  """
           """ is at the proper juxtaposition """
-          if curd + item.d > curbin.d:
-            cury += m_y.max_y
-            curx = m_y.min_x
-            curd = m_y.min_z
+          if space.z + item.d > bin.d:
+            space.y += m_y.max_y
+            space.x = m_y.min_x
+            space.z = m_y.min_z
 
           """ if were at the top of the box """
           """ we cannot allocate any more space so we can move on """
-          if int(cury + item.h) > curbin.h:
-            last = True
-            break
-
-        if last:
-          break           
-  
-        log.info("adding a box at: x: {0}, mx: {1}, y: {2}, my: {3}, z: {4}, mz: {5}".format(curx, curx + item.w, cury, cury + item.w, curd, curd + item.d))
+          if int(space.y + item.h) > bin.h:
+	      return False
+	  return True
+		
 
 
-        slot = Slot(dict(min_x=curx,
-           min_y=cury, 
-          min_z=curd, 
-          item=item,
-          max_x=curx + item.w,
-          max_y=cury + item.h,
-          max_z=curd + item.d
-        ))
 
-        curbin.append(slot)
+    bin = bin_collection.next()
+    first = True
+    while bin != None:
+      log.info("Packing Bin #{0}".format(bin.id))
+      bin.start_time = time.time() 
+      item_collection.reset()
 
-        #item2 = itemcollection.nextsmallest()
-    
-      curbin.e_time = time.time()
+      while item:
+        """ using heuristics, rotate and see if we occupy less room """
+        #item.rotate()
+	if not bin.can_fit( item ):
+	   item_collection.nextlargest()
+	   continue
 
+	space = Space(x=0, y=0, z=0)
+   
+        """ if item.w > bin.w: """
+        """ self.binner.add_lost(item) """
+	can_continue = continue_fn(bin, space, item)
+        while can_continue:
+	   space.compute_next_sequence()
+	   can_continue = continue_fn(bin, space, item)
+
+	show_adding_box_log(space, item)
+
+        slot = Slot.from_space_and_item(space, item)
+        bin.append(slot)
+	item = item_collection.nextlargest()
+      bin.end_time = time.time()
+      bin = bin_collection.next()
     return self.binner  
 
 

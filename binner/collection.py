@@ -39,6 +39,8 @@ class Collection(object):
 
     return self.items[self.it]
 
+  def current(self):
+    return self.items[self.it]
 
   def find(self, **attrs):
     pass
