@@ -59,7 +59,7 @@ binner-cli --items '[{"w": 1000, "h": 1000, "d": 1000, "id":"TestingMyItem"}]' -
 2016-11-25 18:42:10,590 adding a box at: x: 0, mx: 1000, y: 0, my: 1000, z: 0, mz: 1000
 {'packed': [{'bin': {'h': 2000, 'initial': {'h': 2000, 'd': 2000, 'w': 2000}, 'd': 2000, 'w': 2000, 'id': u'TestingMyBin'}, 'slots': [{'min_x': 0, 'min_y': 0, 'min_z': 0, 'item': {'h': 1000, 'id': u'TestingMyItem', 'w': 1000, 'd': 1000}, 'max_z': 1000, 'id': '34762211-5727-4039-9dd8-1bb96985a46a', 'max_x': 1000, 'max_y': 1000}]}], 'lost': []}
 
-``
+```
 
 
 Want to help
