@@ -15,12 +15,12 @@ def find_smallest(item_collection, packed_bins):
 
 
 def show_adding_box_log(space, item):
-  log.info( "adding a box at: x: {0}, mx: {1}, y: {2}, my: {3}, z: {4}, mz: {5}".format(
-		space.x, 
-		space.x_with_item(item), 
-		space.y, 
-		space.y_with_item(item), 
-		space.z, 
-		space.z_with_item(item))
+  log.info("adding a box at: x: {0}, mx: {1}, y: {2}, my: {3}, z: {4}, mz: {5}".format(
+     space.x, 
+     space.x_with_item(item), 
+     space.y, 
+     space.y_with_item(item), 
+     space.z, 
+     space.z_with_item(item))
 
 
