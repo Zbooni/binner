@@ -10,7 +10,7 @@ class Entity(object):
     for k,v in kwargs.iteritems():
       setattr(self, k, v)
     """ if we have an id use it otherwise generate one """
-    if not "id" in args.keys():
+    if not "id" in kwargs.keys():
        from .helpers import get_a_binner_id
        setattr(self, "id", get_a_binner_id())
     self.slots = []

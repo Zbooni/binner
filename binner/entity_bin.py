@@ -1,5 +1,6 @@
 from .entity_object import EntityObject
 from .entity_artifact import EntityArtifact
+from .entity_slot import Slot
 from . import log
 class Bin(EntityObject,EntityArtifact):
   fields = frozenset(('w', 'h', 'd', 'max_wg', 'id', 'used'))
@@ -76,7 +77,7 @@ class Bin(EntityObject,EntityArtifact):
         if i.max_y > curr:
           return i 
 
-    return dict(
+    return Slot(
       min_y=0,
       max_y=0,
       min_x=0,
@@ -152,6 +153,13 @@ class Bin(EntityObject,EntityArtifact):
   spaces 
   """
   def occupied_space(self, space, item):
+     log.info("CHECKING SPACE X: {}, MX: {}, Y: {}, MY: {}, Z: {}, MZ: {}".format(
+        space.x,
+        space.y,
+        space.z,
+        space.x_with_item(item),
+        space.y_with_item(item),
+        space.z_with_item(item)))
      return self.occupied(    
 	    space.x,
 	    space.y,

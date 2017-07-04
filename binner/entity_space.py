@@ -6,7 +6,7 @@ class Space(EntityArtifact):
   z = 0 
   def to_dict( self ):
 	return dict(x=self.x,y=self.y,z=self.z)
-  def compute_next_sequence(self, item):
+  def compute_next_sequence(self):
       self.x += 1 
       self.y += 1
       self.z += 1

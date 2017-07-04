@@ -20,6 +20,7 @@ class Slot(EntityArtifact):
   @classmethod
   def from_space_and_item(cls, space, item):
 	return Slot(
+      item=item,
 	  min_x=space.x,
 	  min_y=space.y,
 	  min_z=space.z,

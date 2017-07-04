@@ -8,8 +8,7 @@ log = logging.getLogger("")
 def find_smallest(item_collection, packed_bins):
    smallest = packed_bins.first()
    for bin in packed_bins:
-     if bin.get_size() < smallest.get_size():
-        if len(bin.items) == item_collection.size():
+     if ( bin.get_size() < smallest.get_size() ) and ( len( bin.items ) == item_collection.count() ):
           smallest = bin
    return smallest
 
@@ -21,6 +20,6 @@ def show_adding_box_log(space, item):
      space.y, 
      space.y_with_item(item), 
      space.z, 
-     space.z_with_item(item))
+     space.z_with_item(item)))
 
 
