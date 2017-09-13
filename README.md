@@ -16,16 +16,17 @@ A lot of bin packing apis are paid. This one is free,
 It is lightweight, speedy and able to perform basic
 bin packing needs.
 
-Algorithms:
-
-Finding Smallest Bin -- Given a set of bins and items
+# Finding Smallest Bin 
+Given a set of bins and items
 find the smallest bin with enough space for "as" much 
 as items as possible
 
-Multiple Bin Packing -- Get the items fit into the provided
+# Multiple Bin Packing
+Get the items fit into the provided
 set of bins using as much as space as possible 
 
-Single Bin Packing -- Try to fit as many items into one bin as
+# Single Bin Packing
+Try to fit as many items into one bin as
 possible
 
 ## Installing
