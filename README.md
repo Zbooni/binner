@@ -10,8 +10,7 @@ It is for 3 Dimensional space, supports an API
 and is a working draft. All work has been experimental 
 and has yet to be tested for real case scenarios
 
-Why its something you should use
--------------------------------------------------------
+## Why its something you should use
 
 A lot of bin packing apis are paid. This one is free,
 It is lightweight, speedy and able to perform basic
@@ -29,10 +28,14 @@ set of bins using as much as space as possible
 Single Bin Packing -- Try to fit as many items into one bin as
 possible
 
+## Installing
 
-Example Usage:
+```
+python setup.py build
+python setup.py install
+```
 
-running through CLI
+## Examples
 
 ```
 binner-cli --bins '[{ "title": "test", "w": 100000, "h": 10000, "d": 100, "weight": 20, "id": 1, "max_weight": 1000 }, { "title": "test", "w": 100000, "h": 10000, "d": 100, "weight": 20, "id": 1, "max_weight": 1000 }]' --items '[{ "title": "test", "w": 50, "h": 50, "d": 50, "q": 2, "weight": 200, "id":202 }, { "title": "test", "w": 50, "h": 50, "d": 100, "weight": 20, "id": 2, "max_weight": 1000 }]' --algorithm "multi"
