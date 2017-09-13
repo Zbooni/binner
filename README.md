@@ -10,33 +10,33 @@ It is for 3 Dimensional space, supports an API
 and is a working draft. All work has been experimental 
 and has yet to be tested for real case scenarios
 
-## Why its something you should use
+# Why its something you should use
 
 A lot of bin packing apis are paid. This one is free,
 It is lightweight, speedy and able to perform basic
 bin packing needs.
 
-# Finding Smallest Bin 
+## Finding Smallest Bin 
 Given a set of bins and items
 find the smallest bin with enough space for "as" much 
 as items as possible
 
-# Multiple Bin Packing
+## Multiple Bin Packing
 Get the items fit into the provided
 set of bins using as much as space as possible 
 
-# Single Bin Packing
+## Single Bin Packing
 Try to fit as many items into one bin as
 possible
 
-## Installing
+# Installing
 
 ```
 python setup.py build
 python setup.py install
 ```
 
-## Examples
+# Examples
 
 ```
 binner-cli --bins '[{ "title": "test", "w": 100000, "h": 10000, "d": 100, "weight": 20, "id": 1, "max_weight": 1000 }, { "title": "test", "w": 100000, "h": 10000, "d": 100, "weight": 20, "id": 1, "max_weight": 1000 }]' --items '[{ "title": "test", "w": 50, "h": 50, "d": 50, "q": 2, "weight": 200, "id":202 }, { "title": "test", "w": 50, "h": 50, "d": 100, "weight": 20, "id": 2, "max_weight": 1000 }]' --algorithm "multi"
@@ -66,8 +66,7 @@ binner-cli --items '[{"w": 1000, "h": 1000, "d": 1000, "id":"TestingMyItem"}]' -
 ```
 
 
-Want to help
--------------------------------------------------------------------
+# Want to help
 
 If you like 3d geometery and have ideas for this project and feel
 these services should not be paid for, contact me any time at [matrix.nad@gmail.com]
