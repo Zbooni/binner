@@ -85,4 +85,5 @@ class AlgoSingle(Algo):
 	
       bin.end_time = time.time()
       bin = bin_collection.next()
+    return self.binner
 

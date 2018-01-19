@@ -94,4 +94,4 @@ class AlgoSmallest(Algo):
     """
     smallest = find_smallest(item_collection, self.binner.packed_bins)
     self.binner.set_smallest(smallest)
-
+    return self.binner
