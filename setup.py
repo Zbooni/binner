@@ -20,7 +20,7 @@ def finalizesetup():
  
 
 setup(name="Binner",
-      version="0.2.0",
+      version="0.3.0",
       description="Calculate bin sizes for items. Easy!",
       maintainer="Nadir Hamid",
       maintainer_email="matrix.nad@gmail.com",
