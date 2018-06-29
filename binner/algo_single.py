@@ -62,6 +62,9 @@ class AlgoSingle(Algo):
 
       while item:
         item = item_collection.current()
+        if not item:
+            continue
+
         if not bin.can_fit( item ) :
             item_collection.next()
             continue
