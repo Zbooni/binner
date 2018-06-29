@@ -48,7 +48,7 @@ class Binner(object):
   """
   def get_packed_bins(self):
     bins = []
-    for bin_key,bin in self.bins.items.iteritems():
+    for bin_key,bin in self.bins.items.items():
       if bin.used:
          bins.append(bin.to_dict())
 

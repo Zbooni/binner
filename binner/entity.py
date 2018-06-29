@@ -7,7 +7,7 @@ class Entity(object):
   def __init__(self, *args, **kwargs):
     self.used=False
     self.tried=False
-    for k,v in kwargs.iteritems():
+    for k,v in kwargs.items():
       setattr(self, k, v)
     """ if we have an id use it otherwise generate one """
     if not "id" in kwargs.keys():

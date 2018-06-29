@@ -13,7 +13,7 @@ class Collection(object):
     self.current_item = None
     self.tried = []
     self.it = 0
-    for k,v in args.iteritems():
+    for k,v in args.items():
         log.debug("Registering Entity")
         log.debug( v )
         self.items[k] = self.get_entity()( **v )
@@ -48,7 +48,7 @@ class Collection(object):
     pass
 
   def reset(self):
-     for k,  item in self.items.iteritems():
+     for k,  item in self.items.items():
          item.tried=False
          self.it = 0
 
