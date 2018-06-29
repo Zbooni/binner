@@ -75,26 +75,26 @@ class Binner(object):
   algorithm
   """
   def show(self):
-    from . import log
-    if self.args.algorithm == "smallest":
-      smallest = self.get_smallest()
-      if smallest:
-           result =dict(smallest=self.get_smallest().to_dict())
+      if self.args.algorithm == "smallest":
+          return self.get_result('smallest')
       else:
-        result = dict(smallest=False)
-    else:
-      lost_items = []
-      for k, item in self.items.items.iteritems():
-        if not item.used:
-            lost_items.append( item.to_dict() )
-      log.debug("Result for PACKED items")
-      result = dict(lost=lost_items,
-		run=dict(id=self.id),
-              packed=self.get_packed_bins())
+          return self.get_result()
 
-      log.debug( result )
-
-
-    return result
-
-
+  def get_result(self, algorithm=None):
+      """Return processed data in dict form."""
+      if algorithm == "smallest":
+          smallest = self.get_smallest()
+          if smallest:
+              result = dict(smallest=self.get_smallest().to_dict())
+          else:
+              result = dict(smallest=False)
+      else:
+          lost_items = []
+          for k, item in self.items.items.items():
+              if not item.used:
+                  lost_items.append(item.to_dict())
+              result = dict(
+                  lost=lost_items,
+                  run=dict(id=self.id),
+                  packed=self.get_packed_bins())
+      return result
