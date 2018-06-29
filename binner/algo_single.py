@@ -31,14 +31,14 @@ class AlgoSingle(Algo):
     """
     def continue_fn(bin, space, item):
         if bin.occupied_space(space, item):
-           return AlgoCode.NO_SPACE
+            return AlgoCode.NO_SPACE
         m_y = bin.get_min_y_pos(space.y)
 
         if space.x + (item.w > bin.w):
             """ try z now """
-            space.z += item.d 
+            space.z += item.d
             space.x = 0
-        else: 
+        else:
             space.x += 1
 
 
@@ -77,12 +77,12 @@ class AlgoSingle(Algo):
           can_continue = continue_fn(bin, space, item)
         if can_continue == AlgoCode.LAST_ITEM:
            continue
-        show_adding_box_log(space, item) 
+        show_adding_box_log(space, item)
 
         slot = Slot.from_space_and_item(space, item)
         bin.append(slot)
         item = item_collection.next()
-	
+
       bin.end_time = time.time()
       bin = bin_collection.next()
     return self.binner

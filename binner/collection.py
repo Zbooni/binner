@@ -13,7 +13,7 @@ class Collection(object):
     self.current_item = None
     self.tried = []
     self.it = 0
-    for k,v in args.iteritems():  
+    for k,v in args.iteritems():
         log.debug("Registering Entity")
         log.debug( v )
         self.items[k] = self.get_entity()( **v )
@@ -34,7 +34,7 @@ class Collection(object):
     return self.items[i]
 
   def prev(self):
-    if self.it == -1: 
+    if self.it == -1:
       return None
     else:
       self.it -= 1
@@ -51,7 +51,7 @@ class Collection(object):
      for k,  item in self.items.iteritems():
          item.tried=False
          self.it = 0
-  
+
   def next(self, safe=False, mode="NORMAL"):
     item = None
     if not safe:
@@ -79,13 +79,13 @@ class Collection(object):
     else:
       if not ( self.it + 1> len(self.items) ):
           self.it += 1
-          item = self.items[ self.it ] 
+          item = self.items[ self.it ]
     return self.return_as_current( item )
-      
+
   def nextlargest(self, safe=False):
-	return self.next( safe=safe, mode="LARGEST" )
+    return self.next( safe=safe, mode="LARGEST" )
   def nextsmallest(self, safe=False):
-	 return self.next( safe=safe, mode="SMALLEST" )
+    return self.next( safe=safe, mode="SMALLEST" )
 
 
   def find_smallest_or_largest(type='smallest'):
@@ -102,7 +102,7 @@ class Collection(object):
           smallest_or_largest = i
           curscore = score
     return smallest_or_largest
-          
+
 
   def smallest(self):
     return self.find_smallest_or_largest('smallest')
@@ -110,13 +110,13 @@ class Collection(object):
   def largest(self):
     return self.find_smallest_or_largest('largest')
   def mode_op(self, item, next_item, mode) :
-	 if mode == "SMALLEST" and (next_item.w+next_item.h+next_item.d) < (item.w+item.h+item.d):
-		return True
-	 if mode == "LARGEST" and ( next_item.w+next_item.h+next_item.d ) > (item.w+item.h+item.d ):
-		return True
-	 return False
+    if mode == "SMALLEST" and (next_item.w+next_item.h+next_item.d) < (item.w+item.h+item.d):
+        return True
+    if mode == "LARGEST" and ( next_item.w+next_item.h+next_item.d ) > (item.w+item.h+item.d ):
+        return True
+    return False
   def return_as_current(self, item):
      self.current_item = item
      return item
-    
+
 

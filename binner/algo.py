@@ -30,8 +30,8 @@ class Algo(object):
     self.items = items
 
   def get_next_bin(self):
-	 if self.args.multi_use_smallest_bins:
-		return self.bins.nextsmallest()
-	 return self.bins.next()
+    if self.args.multi_use_smallest_bins:
+        return self.bins.nextsmallest()
+    return self.bins.next()
   def run( self ):
-	 pass
+    pass
